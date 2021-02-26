@@ -525,7 +525,11 @@ class AudioPlayer {
   /// 0 is mute and 1 is the max volume. The values between 0 and 1 are linearly
   /// interpolated.
   Future<int> setVolume(double volume) {
-    return _invokeMethod('setVolume', {'volume': volume});
+    if(Platform.isAndroid) {
+      return _invokeMethod('setVolume', {'volume': volume});
+    } else {
+      return _invokeMethod('setVolume', {'volume': volume.toString()});
+    }
   }
 
   /// Sets the release mode.
