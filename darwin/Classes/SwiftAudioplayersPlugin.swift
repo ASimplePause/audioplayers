@@ -184,7 +184,7 @@ public class SwiftAudioplayersPlugin: NSObject, FlutterPlugin {
             let duration = player.getDuration()
             result(duration)
         } else if method == "setVolume" {
-            guard let volume = Float(args["volume"]) else {
+            guard let volume = Float(args["volume"] as? String ?? "") else {
                 log("Error calling setVolume, volume cannot be null")
                 result(0)
                 return
